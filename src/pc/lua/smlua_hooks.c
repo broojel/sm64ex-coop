@@ -450,7 +450,7 @@ bool smlua_call_event_hooks_ret_uint(enum LuaHookedEventType hookType, u32* retu
     return false;
 }
 
-bool smlua_call_event_hooks_int_param_ret_uint(enum LuaHookedEventType hookType, s16 param, u32* returnValue) {
+bool smlua_call_event_hooks_int_params_ret_uint(enum LuaHookedEventType hookType, s16 param, u32* returnValue) {
     lua_State* L = gLuaState;
     if (L == NULL) { return false; }
     struct LuaHookedEvent* hook = &sHookedEvents[hookType];
@@ -464,7 +464,7 @@ bool smlua_call_event_hooks_int_param_ret_uint(enum LuaHookedEventType hookType,
         lua_pushinteger(L, param);
 
         // call the callback
-        if (0 != smlua_call_hook(L, 0, 1, 0, hook->mod[i])) {
+        if (0 != smlua_call_hook(L, 1, 1, 0, hook->mod[i])) {
             LOG_LUA("Failed to call the callback: %u", hookType);
             continue;
         }

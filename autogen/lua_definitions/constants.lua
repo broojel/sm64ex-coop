@@ -8119,7 +8119,13 @@ HOOK_ON_CHANGE_CAMERA_ANGLE = 24
 HOOK_ON_SCREEN_TRANSITION = 25
 
 --- @type LuaHookedEventType
-HOOK_MAX = 26
+HOOK_GET_FILE_FLAGS = 26
+
+--- @type LuaHookedEventType
+HOOK_GET_FILE_STAR_FLAGS = 27
+
+--- @type LuaHookedEventType
+HOOK_MAX = 28
 
 --- @class HudDisplayFlags
 
