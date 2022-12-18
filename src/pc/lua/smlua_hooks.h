@@ -37,6 +37,8 @@ enum LuaHookedEventType {
     HOOK_USE_ACT_SELECT,
     HOOK_ON_CHANGE_CAMERA_ANGLE,
     HOOK_ON_SCREEN_TRANSITION,
+    HOOK_GET_FILE_FLAGS,
+    HOOK_GET_FILE_STAR_FLAGS,
     HOOK_MAX,
 };
 
@@ -67,6 +69,8 @@ static const char* LuaHookedEventTypeName[] = {
     "HOOK_USE_ACT_SELECT",
     "HOOK_ON_CHANGE_CAMERA_ANGLE",
     "HOOK_ON_SCREEN_TRANSITION",
+    "HOOK_GET_FILE_FLAGS",
+    "HOOK_GET_FILE_STAR_FLAGS",
     "HOOK_MAX"
 };
 
@@ -97,6 +101,7 @@ void smlua_call_event_hooks_interact_params(enum LuaHookedEventType hookType, st
 void smlua_call_event_hooks_interact_params_ret_bool(enum LuaHookedEventType hookType, struct MarioState* m, struct Object* obj, u32 interactType, bool* returnValue);
 void smlua_call_event_hooks_object_param(enum LuaHookedEventType hookType, struct Object* obj);
 bool smlua_call_event_hooks_ret_int(enum LuaHookedEventType hookType, s32* returnValue);
+bool smlua_call_event_hooks_ret_uint(enum LuaHookedEventType hookType, u32* returnValue);
 void smlua_call_event_hooks_set_camera_mode_params(enum LuaHookedEventType hookType, struct Camera *c, s16 mode, s16 frames, bool* returnValue);
 void smlua_call_event_hooks_int_params_ret_bool(enum LuaHookedEventType hookType, s16 param, bool* returnValue);
 void smlua_call_event_hooks_value_param(enum LuaHookedEventType hookType, int modIndex, int valueIndex);

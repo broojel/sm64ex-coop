@@ -14,6 +14,7 @@
 #include "pc/network/network.h"
 #include "pc/lua/utils/smlua_level_utils.h"
 #include "pc/utils/misc.h"
+#include "pc/lua/smlua_hooks.h"
 
 #ifndef bcopy
 #define bcopy(b1,b2,len) (memmove((b2), (b1), (len)), (void) 0)
@@ -612,9 +613,16 @@ void save_file_clear_flags(u32 flags) {
 }
 
 u32 save_file_get_flags(void) {
+    u32 fileFlags = 0;
+
+    if (smlua_call_event_hooks_ret_uint(HOOK_GET_FILE_FLAGS, &fileFlags)) {
+        return fileFlags;
+    }
+    
     if (gCurrCreditsEntry != NULL || gCurrDemoInput != NULL) {
         return 0;
     }
+    
     return gSaveBuffer.files[gCurrSaveFileNum - 1][gSaveFileUsingBackupSlot].flags;
 }
 
@@ -624,6 +632,10 @@ u32 save_file_get_flags(void) {
  */
 u32 save_file_get_star_flags(s32 fileIndex, s32 courseIndex) {
     u32 starFlags;
+
+    if (smlua_call_event_hooks_ret_uint(HOOK_GET_FILE_FLAGS, &starFlags)) {
+        return starFlags;
+    }
 
     if (courseIndex == -1) {
         starFlags = SAVE_FLAG_TO_STAR_FLAG(gSaveBuffer.files[fileIndex][gSaveFileUsingBackupSlot].flags);
