@@ -633,7 +633,7 @@ u32 save_file_get_flags(void) {
 u32 save_file_get_star_flags(s32 fileIndex, s32 courseIndex) {
     u32 starFlags;
 
-    if (smlua_call_event_hooks_ret_uint(HOOK_GET_FILE_FLAGS, &starFlags)) {
+    if (smlua_call_event_hooks_ret_uint(HOOK_GET_FILE_STAR_FLAGS, &starFlags)) {
         return starFlags;
     }
 
