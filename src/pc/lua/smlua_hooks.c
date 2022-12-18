@@ -450,7 +450,7 @@ bool smlua_call_event_hooks_ret_uint(enum LuaHookedEventType hookType, u32* retu
     return false;
 }
 
-bool smlua_call_event_hooks_int_param_ret_uint(enum LuaHookedEventType hookType, u32* returnValue) {
+bool smlua_call_event_hooks_int_param_ret_uint(enum LuaHookedEventType hookType, s16 param, u32* returnValue) {
     lua_State* L = gLuaState;
     if (L == NULL) { return false; }
     struct LuaHookedEvent* hook = &sHookedEvents[hookType];
